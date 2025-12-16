@@ -1,0 +1,11 @@
+# Node.js
+node_modules/
+.env
+npm-debug.log
+
+# React
+build/
+dist/
+
+
+DEPLOYMENT.md
