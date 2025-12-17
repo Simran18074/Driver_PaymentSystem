@@ -14,6 +14,7 @@ app.use(
       const allowedOrigins = [
         "http://localhost:5173",
         "https://driver-payment-system.vercel.app",
+        process.env.FRONTEND_URL,
       ];
 
       if (!origin || allowedOrigins.includes(origin)) {
