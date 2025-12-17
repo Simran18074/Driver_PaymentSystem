@@ -11,17 +11,23 @@ const app = express();
 app.use(
   cors({
     origin: (origin, callback) => {
-      const allowedOrigins = [
-        "http://localhost:5173",
-        "https://driver-payment-system-qnqz-d7qq4xips.vercel.app",
-        process.env.FRONTEND_URL,
-      ];
+      // Allow non-browser requests (Postman, curl)
+      if (!origin) return callback(null, true);
 
-      if (!origin || allowedOrigins.includes(origin)) {
-        callback(null, true);
-      } else {
-        callback(new Error("Not allowed by CORS"));
+      // Allow all Vercel preview & prod URLs for this project
+      if (
+        origin.startsWith("https://driver-payment-system") &&
+        origin.endsWith(".vercel.app")
+      ) {
+        return callback(null, true);
       }
+
+      // Allow local development
+      if (origin === "http://localhost:5173") {
+        return callback(null, true);
+      }
+
+      callback(new Error("Not allowed by CORS"));
     },
     credentials: true,
   })
