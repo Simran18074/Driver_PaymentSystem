@@ -13,7 +13,7 @@ app.use(
     origin: (origin, callback) => {
       const allowedOrigins = [
         "http://localhost:5173",
-        "https://driver-payment-system.vercel.app",
+        "https://driver-payment-system-qnqz-d7qq4xips.vercel.app",
         process.env.FRONTEND_URL,
       ];
 
